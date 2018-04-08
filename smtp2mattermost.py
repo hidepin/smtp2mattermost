@@ -20,6 +20,6 @@ class CustomSMTPServer(smtpd.SMTPServer):
         print('Message body  :', body)
         return
 
-server = CustomSMTPServer(('192.168.0.9', 1025), None, decode_data=True)
+server = CustomSMTPServer(('0.0.0.0', 1025), None, decode_data=True)
 
 asyncore.loop()
