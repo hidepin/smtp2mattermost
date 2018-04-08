@@ -16,7 +16,7 @@ class CustomSMTPServer(smtpd.SMTPServer):
         (header, body) = data.split('\n\n\n')
         print('---------- header ----------')
         print('Message header  :', header)
-        print('---------- header ----------')
+        print('---------- body ----------')
         print('Message body  :', body)
         return
 
