@@ -13,7 +13,11 @@ class CustomSMTPServer(smtpd.SMTPServer):
         print('Message addressed from:', mailfrom)
         print('Message addressed to  :', rcpttos)
         print('Message length        :', len(data))
-        print('Message data  :', data)
+        (header, body) = data.split('\n\n\n')
+        print('---------- header ----------')
+        print('Message header  :', header)
+        print('---------- header ----------')
+        print('Message body  :', body)
         return
 
 server = CustomSMTPServer(('192.168.0.9', 1025), None, decode_data=True)
