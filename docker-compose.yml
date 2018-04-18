@@ -1,0 +1,10 @@
+version: '2'
+
+services:
+  app:
+    build: smtp2mattermost
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/locale.conf:/etc/locale.conf:ro
+    ports:
+      - "9200:1025"
