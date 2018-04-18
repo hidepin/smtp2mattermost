@@ -1,0 +1,25 @@
+---
+- hosts: all
+
+  vars:
+    service: smtp2mattermost
+
+  tasks:
+    - name: "set {{ service }} systemd service"
+      template:
+        src: "service.j2"
+        dest: "/etc/systemd/system/{{ service }}.service"
+      notify: "service restart"
+
+    - name: "enable {{ service }} systemd service"
+      service:
+        name: "{{ service }}"
+        enabled: yes
+        state: started
+        daemon_reload: yes
+
+  handlers:
+    - name: "service restart"
+      service:
+        name: "{{ service }}"
+        state: restarted

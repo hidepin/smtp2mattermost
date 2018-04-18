@@ -1,0 +1,15 @@
+[Unit]
+Description=APP Container for {{ service }}
+Requires=docker.service
+After=docker.service
+
+[Service]
+Type=simple
+TimeoutStartSec=0
+ExecStart=/usr/local/bin/docker-compose up
+ExecStop=/usr/local/bin/docker-compose stop
+WorkingDirectory=/opt/docker/{{ service }}/{{ service }}-docker
+Environment="DOCKER_HOST=tcp://127.0.0.1:2376"
+
+[Install]
+WantedBy=multi-user.target
