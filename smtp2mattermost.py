@@ -19,7 +19,6 @@ class CustomSMTPServer(smtpd.SMTPServer):
         (header, body) = data.split('\n\n', 1)
         print('---------- header ----------')
         for line in header.split('\n'):
-            print('line = ' + line)
             pattern = re.compile("Subject")
             match = pattern.match(line)
             print(line)
