@@ -16,15 +16,13 @@ class CustomSMTPServer(smtpd.SMTPServer):
         print('Message addressed from:', mailfrom)
         print('Message addressed to  :', rcpttos)
         print('Message length        :', len(data))
-        (header, body) = data.split('\n\n\n')
+        (header, body) = data.split('\n\n', 1)
         print('---------- header ----------')
         for line in header.split('\n'):
+            print('line = ' + line)
             pattern = re.compile("Subject")
             match = pattern.match(line)
-            if match != None:
-                print('Subject  :', decode_header(line)[1][0].decode('utf-8'))
-            else:
-                print(line)
+            print(line)
         print('---------- body ----------')
         print(quopri.decodestring(body).decode('utf-8'))
         return
