@@ -8,3 +8,8 @@ services:
       - /etc/locale.conf:/etc/locale.conf:ro
     ports:
       - "9200:1025"
+    environment:
+      - MATTERMOST_ADDRESS=xxx.xxx.xxx.xxx
+      - MATTERMOST_LOGIN_ID=xxx
+      - MATTERMOST_PASSWORD=xxx
+      - MATTERMOST_PORT=xxx
