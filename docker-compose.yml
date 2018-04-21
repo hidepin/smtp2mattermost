@@ -10,6 +10,7 @@ services:
       - "8025:8025"
     environment:
       - MATTERMOST_ADDRESS=xxx.xxx.xxx.xxx
-      - MATTERMOST_LOGIN_ID=xxx
+      - MATTERMOST_LOGIN_ID=xxx@xxx.xxx.xxx
       - MATTERMOST_PASSWORD=xxx
       - MATTERMOST_PORT=xxx
+      - MATTERMOST_EXCLUDE_NOTIFICATE=xxx
