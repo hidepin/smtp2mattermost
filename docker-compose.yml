@@ -9,6 +9,7 @@ services:
     ports:
       - "8025:8025"
     environment:
+      - MATTERMOST_INCOME_URL=http://xxx.xxx.xxx/hooks/xxxxxxxxxxxxxxxxxxxxx
       - MATTERMOST_ADDRESS=xxx.xxx.xxx.xxx
       - MATTERMOST_LOGIN_ID=xxx@xxx.xxx.xxx
       - MATTERMOST_PASSWORD=xxx
