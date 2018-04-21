@@ -46,6 +46,8 @@ mattermost設定
 docker-compose.ymlファイルの下記パラメータを環境に合わせ変更する
 
 - MATTERMOST_INCOME_URL:         (内向きのウェブフックのURL)
+- MATTERMOST_PRIVATE_INCOME_URL: (内向きのウェブフックのURL: privateプロジェクトも出力)
+- MATTERMOST_PRIVATE_PROJECT:    (出力対象外のプロジェクト: MATTERMOST_PRIVATE_INCOME_URLには表示)
 - MATTERMOST_USERNAME:           (表示したいbot名称:デフォルト「subot」)
 - MATTERMOST_ADDRESS:            (mattermostのアドレス:mailアドレスからmentionの名前を抽出)
 - MATTERMOST_LOGIN_ID:           (mattermostの管理者ID:mailアドレスからmentionの名前を抽出できる権限のあるアカウント)
