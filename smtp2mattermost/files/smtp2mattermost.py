@@ -53,11 +53,9 @@ class Smtp2MattermostServer(smtpd.SMTPServer):
 
     def process_message(self, peer, mailfrom, rcpttos, data):
         (header, body) = data.split('\n\n', 1)
-        print(self.search_to_address(header))
-        print('---------- header ----------')
-        print(header)
-        print('---------- body ----------')
-        print(quopri.decodestring(body).decode('utf-8'))
+        email = self.search_to_address(header)
+        if  email != os.environ['MATTERMOST_EXCLUDE_NOTIFICATE']:
+            print(self.username(email))
         return
 
 server = Smtp2MattermostServer(('0.0.0.0', 8025), None, decode_data=True)
