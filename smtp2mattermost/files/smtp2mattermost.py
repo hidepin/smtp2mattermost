@@ -5,6 +5,8 @@ import asyncore
 import re
 import quopri
 import os
+import urllib.request
+import json
 from email.header import decode_header
 from mattermostdriver import Driver
 
@@ -51,11 +53,31 @@ class Smtp2MattermostServer(smtpd.SMTPServer):
             if re.match("^To:", line):
                 return line.split(' ',1)[1]
 
+    def get_ticket_url(self, message):
+        for line in message.split('\n'):
+            if re.match("http://", line):
+                return line
+
+    def send_message(self, mention, message):
+        url = os.environ['MATTERMOST_INCOME_URL']
+        method = "POST"
+        headers = {"Content-Type" : "application/json"}
+
+        if mention == None:
+            mention = "channel"
+
+        data = {"username": os.environ['MATTERMOST_USERNAME'], "text": "@" + mention + "\n" + self.get_ticket_url(message) + "\n" + "```" + message[:int(os.environ['MATTERMOST_MESSAGE_MAX'])] + "\n```"}
+        json_data = json.dumps(data, ensure_ascii=False).encode("utf-8")
+        request = urllib.request.Request(url, data=json_data, method=method, headers=headers)
+        with urllib.request.urlopen(request) as response:
+            response_body = response.read().decode("utf-8")
+
     def process_message(self, peer, mailfrom, rcpttos, data):
+        data = bytes(data, encoding='utf-8').decode('iso-2022-jp')
         (header, body) = data.split('\n\n', 1)
         email = self.search_to_address(header)
         if  email != os.environ['MATTERMOST_EXCLUDE_NOTIFICATE']:
-            print(self.username(email))
+            self.send_message(self.username(email), body)
         return
 
 server = Smtp2MattermostServer(('0.0.0.0', 8025), None, decode_data=True)
