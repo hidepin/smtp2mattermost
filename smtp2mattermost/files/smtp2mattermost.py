@@ -52,12 +52,12 @@ class Smtp2MattermostServer(smtpd.SMTPServer):
                 return line.split(' ',1)[1]
 
     def process_message(self, peer, mailfrom, rcpttos, data):
-        print('foo')
-#        (header, body) = data.split('\n\n', 1)
-        print('hoge')
-#        print(self.search_to_address(header))
-#        print('---------- body ----------')
-#        print(quopri.decodestring(body).decode('utf-8'))
+        (header, body) = data.split('\n\n', 1)
+        print(self.search_to_address(header))
+        print('---------- header ----------')
+        print(header)
+        print('---------- body ----------')
+        print(quopri.decodestring(body).decode('utf-8'))
         return
 
 server = Smtp2MattermostServer(('0.0.0.0', 8025), None, decode_data=True)
