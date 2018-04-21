@@ -58,8 +58,18 @@ class Smtp2MattermostServer(smtpd.SMTPServer):
             if re.match("http://", line):
                 return line
 
-    def send_message(self, mention, message):
-        url = os.environ['MATTERMOST_INCOME_URL']
+    def get_project_name(self, message):
+        project_header = "Project:"
+        for line in message.split('\n'):
+            if re.match(project_header, line):
+                return re.sub("^" + project_header + " *", '', line)
+
+    def send_mattermost(self, mention, message):
+        if self.get_project_name(message) != os.environ['MATTERMOST_PRIVATE_PROJECT']:
+            self.send_message(os.environ['MATTERMOST_INCOME_URL'], mention, message)
+        self.send_message(os.environ['MATTERMOST_PRIVATE_INCOME_URL'], mention, message)
+
+    def send_message(self, url, mention, message):
         method = "POST"
         headers = {"Content-Type" : "application/json"}
 
@@ -77,7 +87,7 @@ class Smtp2MattermostServer(smtpd.SMTPServer):
         (header, body) = data.split('\n\n', 1)
         email = self.search_to_address(header)
         if  email != os.environ['MATTERMOST_EXCLUDE_NOTIFICATE']:
-            self.send_message(self.username(email), body)
+            self.send_mattermost(self.username(email), body)
         return
 
 server = Smtp2MattermostServer(('0.0.0.0', 8025), None, decode_data=True)
