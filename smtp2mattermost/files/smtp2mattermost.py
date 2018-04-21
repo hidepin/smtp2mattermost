@@ -58,6 +58,12 @@ class Smtp2MattermostServer(smtpd.SMTPServer):
             if re.match("http://", line):
                 return line
 
+    def get_project_name(self, message):
+        project_header = "Project:"
+        for line in message.split('\n'):
+            if re.match(project_header, line):
+                return re.sub("^" + project_header + " *", '', line)
+
     def send_message(self, mention, message):
         url = os.environ['MATTERMOST_INCOME_URL']
         method = "POST"
