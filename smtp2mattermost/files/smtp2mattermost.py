@@ -60,8 +60,6 @@ class Smtp2MattermostServer(smtpd.SMTPServer):
 #        print(quopri.decodestring(body).decode('utf-8'))
         return
 
-print('hogehoge')
-
-server = Smtp2MattermostServer(('0.0.0.0', 1025), None, decode_data=True)
+server = Smtp2MattermostServer(('0.0.0.0', 8025), None, decode_data=True)
 
 asyncore.loop()
