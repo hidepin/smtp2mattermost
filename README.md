@@ -45,18 +45,14 @@ mattermost設定
 
 docker-compose.ymlファイルの下記パラメータを環境に合わせ変更する
 
-- MATTERMOST_HUBOT_USERNAME=(表示したいbot名称)
-- MATTERMOST_INCOME_URL=(内向きのウェブフックのURL)
-- MATTERMOST_TOKEN=(外向きのウェブフックのトークン(複数ある場合はカンマで区切り入力))
-
-- MATTERMOST_INCOME_URL=(内向きのウェブフックのURL)
-- MATTERMOST_USERNAME=(表示したいbot名称:デフォルト「subot」)
-- MATTERMOST_ADDRESS=(mattermostのアドレス:mailアドレスからmentionの名前を抽出)
-- MATTERMOST_LOGIN_ID=(mattermostの管理者ID:mailアドレスからmentionの名前を抽出できる権限のあるアカウント)
-- MATTERMOST_PASSWORD=(mattermostの管理者パスワード:mailアドレスからmentionの名前を抽出できる権限のあるアカウント)
-- MATTERMOST_PORT=(mattermostのポート)
-- MATTERMOST_EXCLUDE_NOTIFICATE=(mentionで通知しないアカウント:mantisの管理者など)
-- MATTERMOST_MESSAGE_MAX=(mattermostへ通知するメッセージの最大サイズ:デフォルト1000)
+- MATTERMOST_INCOME_URL:         (内向きのウェブフックのURL)
+- MATTERMOST_USERNAME:           (表示したいbot名称:デフォルト「subot」)
+- MATTERMOST_ADDRESS:            (mattermostのアドレス:mailアドレスからmentionの名前を抽出)
+- MATTERMOST_LOGIN_ID:           (mattermostの管理者ID:mailアドレスからmentionの名前を抽出できる権限のあるアカウント)
+- MATTERMOST_PASSWORD:           (mattermostの管理者パスワード:mailアドレスからmentionの名前を抽出できる権限のあるアカウント)
+- MATTERMOST_PORT:               (mattermostのポート)
+- MATTERMOST_EXCLUDE_NOTIFICATE: (mentionで通知しないアカウント:mantisの管理者など)
+- MATTERMOST_MESSAGE_MAX:        (mattermostへ通知するメッセージの最大サイズ:デフォルト1000)
 
 起動方法
 ------------------------------------------------------------
