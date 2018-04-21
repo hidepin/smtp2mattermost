@@ -7,7 +7,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /etc/locale.conf:/etc/locale.conf:ro
     ports:
-      - "8025:1025"
+      - "8025:8025"
     environment:
       - MATTERMOST_ADDRESS=xxx.xxx.xxx.xxx
       - MATTERMOST_LOGIN_ID=xxx
