@@ -59,7 +59,7 @@ class Smtp2MattermostServer(smtpd.SMTPServer):
                 return line
 
     def get_project_name(self, message):
-        project_header = "Project:"
+        project_header = os.environ['MATTERMOST_PRIVATE_PROJECT_HEADER']
         for line in message.split('\n'):
             if re.match(project_header, line):
                 return re.sub("^" + project_header + " *", '', line)
