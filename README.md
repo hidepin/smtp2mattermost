@@ -47,7 +47,7 @@ docker-compose.ymlファイルの下記パラメータを環境に合わせ変�
 
 - MATTERMOST_INCOME_URL:         (内向きのウェブフックのURL)
 - MATTERMOST_PRIVATE_INCOME_URL: (内向きのウェブフックのURL: privateプロジェクトも出力)
-- MATTERMOST_PRIVATE_PROJECT:    (出力対象外のプロジェクト: MATTERMOST_PRIVATE_INCOME_URLには表示)
+- MATTERMOST_PRIVATE_PROJECT:    (出力対象外のプロジェクト: MATTERMOST_PRIVATE_INCOME_URLにのみ表示)
 - MATTERMOST_PRIVATE_PROJECT_HEADER: (mail本文のプロジェクト出力キーワード: デフォルト「プロジェクト:」)
 - MATTERMOST_USERNAME:           (表示したいbot名称:デフォルト「subot」)
 - MATTERMOST_ADDRESS:            (mattermostのアドレス:mailアドレスからmentionの名前を抽出)
