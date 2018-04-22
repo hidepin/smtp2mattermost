@@ -63,6 +63,7 @@ class Smtp2MattermostServer(smtpd.SMTPServer):
         for line in message.split('\n'):
             if re.match(project_header, line):
                 return re.sub("^" + project_header + " *", '', line)
+        return ""
 
     def send_mattermost(self, mention, message):
         if self.get_project_name(message) != os.environ['MATTERMOST_PRIVATE_PROJECT']:
