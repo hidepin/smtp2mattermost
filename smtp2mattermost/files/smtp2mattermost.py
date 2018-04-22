@@ -67,8 +67,12 @@ class Smtp2MattermostServer(smtpd.SMTPServer):
 
     def send_mattermost(self, mention, message):
         if self.get_project_name(message) != os.environ['MATTERMOST_PRIVATE_PROJECT']:
-            self.send_message(os.environ['MATTERMOST_INCOME_URL'], mention, message)
-        self.send_message(os.environ['MATTERMOST_PRIVATE_INCOME_URL'], mention, message)
+            public_income_url = os.environ['MATTERMOST_INCOME_URL']
+            if income_url != "":
+                self.send_message(public_income_url, mention, message)
+
+        private_income_url = os.environ['MATTERMOST_PRIVATE_INCOME_URL']
+        self.send_message(private_income_url, mention, message)
 
     def send_message(self, url, mention, message):
         method = "POST"
